@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: appset
+spec:
+  generators:
+    - list:
+        elements:
+          - app: nginx-gops-helm
+            path: D1/nginx
+          - app: shopping-gops
+            path: D2/mani
+          - app: nginx-gops-mani
+            path: D1/mani 
+  template:
+    metadata:
+      name: '{{app}}-list'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/gg-alva/gops.git
+        targetRevision: main
+        path: '{{path}}'  
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
