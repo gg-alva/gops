@@ -1,2 +1,2 @@
 ## Gitops 
-#### this is for practice only
+#### this is for practice only argocd
