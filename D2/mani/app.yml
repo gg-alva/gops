@@ -11,8 +11,8 @@ spec:
     path: D2/mani
   destination:
     server: https://kubernetes.default.svc
-    namespace: prod
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+
